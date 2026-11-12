@@ -53,7 +53,7 @@ abstract class NetworkBindingModule {
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val DEFAULT_BASE_URL = "http://10.0.2.2:8000/"
+    private const val DEFAULT_BASE_URL = "https://dukaanai-backend-yx5b.onrender.com/"
 
     @Provides
     @Singleton
