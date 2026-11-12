@@ -1,0 +1,94 @@
+# ==========================================
+# DukaanAI - Global .gitignore
+# ==========================================
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.iml
+
+# Android & Gradle
+.gradle/
+build/
+*/build/
+*/*/build/
+*.apk
+*.aab
+*.ap_
+*.dex
+local.properties
+.navigation/
+captures/
+*.hprof
+.cxx/
+output.json
+
+# Signing & Credentials
+*.jks
+*.keystore
+google-services.json
+secrets.properties
+*.pem
+*.key
+*.crt
+
+# Python & Backend
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Python Virtual Environments
+venv/
+.venv/
+ENV/
+env/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Environment Variables & Secrets
+.env
+!.env.example
+.env.local
+.env.*.local
+
+# ML Artifacts & Datasets
+ml/datasets/raw/
+ml/datasets/processed/*.parquet
+ml/datasets/processed/*.csv
+*.pt
+*.onnx
+*.tflite
+*.bin
+wandb/
+
+# Infrastructure & Containers
+*.log
+docker-compose.override.yml

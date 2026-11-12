@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">दुकान एआई</string>
+
+    <!-- Authentication -->
+    <string name="login_screen_title">लॉगिन</string>
+    <string name="login_title">मोबाइल नंबर दर्ज करें</string>
+    <string name="login_subtitle">खाता सत्यापित करने के लिए हम एक ओटीपी भेजेंगे</string>
+    <string name="phone_number_label">फ़ोन नंबर</string>
+    <string name="phone_number_placeholder">9876543210</string>
+    <string name="get_otp_button">ओटीपी प्राप्त करें</string>
+    <string name="otp_screen_title">ओटीपी सत्यापन</string>
+    <string name="otp_title">सत्यापन कोड</string>
+    <string name="otp_subtitle">%s पर भेजा गया 6 अंकों का कोड दर्ज करें</string>
+    <string name="otp_label">6 अंकों का ओटीपी</string>
+    <string name="verify_button">सत्यापित करें और आगे बढ़ें</string>
+    <string name="resend_otp">पुनः ओटीपी भेजें</string>
+    <string name="resend_in_seconds">%d सेकंड में पुनः ओटीपी भेजें</string>
+    <string name="phone_invalid_error">कृपया 10 अंकों का वैध भारतीय फ़ोन नंबर दर्ज करें</string>
+    <string name="otp_invalid_error">कृपया 6 अंकों का सत्यापन कोड दर्ज करें</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_screen_title">दुकान सेटअप</string>
+    <string name="onboarding_title">अपनी दुकान पंजीकृत करें</string>
+    <string name="onboarding_subtitle">अपनी व्यापार प्रोफ़ाइल और मुख्य दुकान शाखा सेटअप करें</string>
+    <string name="business_name_label">दुकान / व्यापार का नाम</string>
+    <string name="business_name_placeholder">उदा. श्री गणेश किराना स्टोर</string>
+    <string name="business_type_label">व्यापार श्रेणी</string>
+    <string name="owner_name_label">दुकानदार / मालिक का नाम</string>
+    <string name="owner_name_placeholder">उदा. रमेश कुमार</string>
+    <string name="language_label">पसंदीदा भाषा</string>
+    <string name="store_name_label">शाखा / आउटलेट का नाम</string>
+    <string name="store_name_placeholder">उदा. मुख्य शाखा</string>
+    <string name="city_label">शहर</string>
+    <string name="city_placeholder">उदा. मुंबई</string>
+    <string name="state_label">राज्य</string>
+    <string name="state_placeholder">उदा. महाराष्ट्र</string>
+    <string name="pincode_label">पिनकोड</string>
+    <string name="pincode_placeholder">उदा. 400001</string>
+    <string name="launch_dukaan_button">दुकान शुरू करें</string>
+    <string name="onboarding_name_required">दुकान का नाम कम से कम 2 अक्षरों का होना चाहिए</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">दुकान एआई • डैशबोर्ड</string>
+    <string name="welcome_merchant">स्वागत है, %s</string>
+    <string name="active_store">सक्रिय दुकान: %s</string>
+    <string name="sign_out_button">लॉगआउट करें</string>
+</resources>

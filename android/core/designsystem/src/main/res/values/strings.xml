@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DukaanAI</string>
+
+    <!-- Authentication -->
+    <string name="login_screen_title">Sign In • लॉगिन</string>
+    <string name="login_title">Enter Mobile Number</string>
+    <string name="login_subtitle">We will send an OTP to verify your account</string>
+    <string name="phone_number_label">Phone Number</string>
+    <string name="phone_number_placeholder">9876543210</string>
+    <string name="get_otp_button">Get OTP • ओटीपी प्राप्त करें</string>
+    <string name="otp_screen_title">Verify OTP • ओटीपी सत्यापन</string>
+    <string name="otp_title">Verification Code</string>
+    <string name="otp_subtitle">Enter the 6-digit code sent to %s</string>
+    <string name="otp_label">6-Digit OTP</string>
+    <string name="verify_button">Verify &amp; Proceed • सत्यापित करें</string>
+    <string name="resend_otp">Resend OTP • पुनः ओटीपी भेजें</string>
+    <string name="resend_in_seconds">Resend OTP in %ds</string>
+    <string name="phone_invalid_error">Please enter a valid 10-digit Indian phone number</string>
+    <string name="otp_invalid_error">Please enter a 6-digit verification code</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_screen_title">Store Setup • दुकान सेटअप</string>
+    <string name="onboarding_title">Register Your Store</string>
+    <string name="onboarding_subtitle">Set up your business profile and primary retail outlet</string>
+    <string name="business_name_label">Store / Business Name</string>
+    <string name="business_name_placeholder">e.g., Shri Ganesh Kirana Store</string>
+    <string name="business_type_label">Business Category</string>
+    <string name="owner_name_label">Owner / Merchant Name</string>
+    <string name="owner_name_placeholder">e.g., Ramesh Kumar</string>
+    <string name="language_label">Preferred Language</string>
+    <string name="store_name_label">Outlet / Branch Name</string>
+    <string name="store_name_placeholder">e.g., Main Branch</string>
+    <string name="city_label">City</string>
+    <string name="city_placeholder">e.g., Mumbai</string>
+    <string name="state_label">State</string>
+    <string name="state_placeholder">e.g., Maharashtra</string>
+    <string name="pincode_label">Pincode</string>
+    <string name="pincode_placeholder">e.g., 400001</string>
+    <string name="launch_dukaan_button">Launch DukaanAI • दुकान शुरू करें</string>
+    <string name="onboarding_name_required">Business name must be at least 2 characters</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">DukaanAI • डैशबोर्ड</string>
+    <string name="welcome_merchant">Welcome, %s</string>
+    <string name="active_store">Active Store: %s</string>
+    <string name="sign_out_button">Sign Out • लॉगआउट</string>
+</resources>
