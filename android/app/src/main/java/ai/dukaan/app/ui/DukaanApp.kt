@@ -1,13 +1,24 @@
 package ai.dukaan.app.ui
 
+import ai.dukaan.core.navigation.AddProductRoute
+import ai.dukaan.core.navigation.BarcodeScannerRoute
 import ai.dukaan.core.navigation.BusinessOnboardingRoute
+import ai.dukaan.core.navigation.CategoryManagementRoute
 import ai.dukaan.core.navigation.DashboardRoute
+import ai.dukaan.core.navigation.EditProductRoute
 import ai.dukaan.core.navigation.LoginRoute
 import ai.dukaan.core.navigation.OtpVerifyRoute
+import ai.dukaan.core.navigation.ProductDetailsRoute
+import ai.dukaan.core.navigation.ProductListRoute
 import ai.dukaan.core.navigation.SplashRoute
 import ai.dukaan.feature.auth.login.LoginRoute
 import ai.dukaan.feature.auth.otp.OtpVerifyRoute
 import ai.dukaan.feature.auth.splash.SplashRoute
+import ai.dukaan.feature.catalogue.AddEditProductScreen
+import ai.dukaan.feature.catalogue.BarcodeScannerScreen
+import ai.dukaan.feature.catalogue.CategoryManagementScreen
+import ai.dukaan.feature.catalogue.ProductDetailsScreen
+import ai.dukaan.feature.catalogue.ProductListScreen
 import ai.dukaan.feature.dashboard.DashboardRoute
 import ai.dukaan.feature.onboarding.BusinessOnboardingRoute
 import androidx.compose.runtime.Composable
@@ -83,7 +94,91 @@ fun DukaanApp() {
         }
 
         composable<DashboardRoute> {
-            DashboardRoute()
+            DashboardRoute(
+                onNavigateToCatalogue = {
+                    navController.navigate(ProductListRoute)
+                },
+            )
+        }
+
+        // -----------------------------------------------------------------
+        // Product Catalogue Navigation Routes (Stage 07)
+        // -----------------------------------------------------------------
+        composable<ProductListRoute> {
+            ProductListScreen(
+                onNavigateToAddProduct = {
+                    navController.navigate(AddProductRoute())
+                },
+                onNavigateToProductDetails = { productId ->
+                    navController.navigate(ProductDetailsRoute(productId = productId))
+                },
+                onNavigateToBarcodeScanner = {
+                    navController.navigate(BarcodeScannerRoute(source = "SEARCH"))
+                },
+                onNavigateToCategoryManagement = {
+                    navController.navigate(CategoryManagementRoute)
+                },
+            )
+        }
+
+        composable<AddProductRoute> {
+            AddEditProductScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToScanBarcode = {
+                    navController.navigate(BarcodeScannerRoute(source = "ADD_PRODUCT"))
+                },
+            )
+        }
+
+        composable<EditProductRoute> {
+            AddEditProductScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToScanBarcode = {
+                    navController.navigate(BarcodeScannerRoute(source = "ADD_PRODUCT"))
+                },
+            )
+        }
+
+        composable<ProductDetailsRoute> {
+            ProductDetailsScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToEdit = { productId ->
+                    navController.navigate(EditProductRoute(productId = productId))
+                },
+            )
+        }
+
+        composable<CategoryManagementRoute> {
+            CategoryManagementScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+            )
+        }
+
+        composable<BarcodeScannerRoute> { backStackEntry ->
+            val route = backStackEntry.toRoute<BarcodeScannerRoute>()
+            BarcodeScannerScreen(
+                onBarcodeScanned = { scannedCode ->
+                    if (route.source == "ADD_PRODUCT") {
+                        navController.popBackStack()
+                        navController.navigate(AddProductRoute(prefilledBarcode = scannedCode))
+                    } else {
+                        // In search mode, pop and open AddProduct with prefill or filter
+                        navController.popBackStack()
+                        navController.navigate(AddProductRoute(prefilledBarcode = scannedCode))
+                    }
+                },
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+            )
         }
     }
 }

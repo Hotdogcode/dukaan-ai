@@ -16,6 +16,7 @@ dependencies {
     implementation(project(":core:datastore"))
 
     implementation(libs.retrofit.core)
+    implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.hilt.work)
     ksp(libs.androidx.hilt.compiler)

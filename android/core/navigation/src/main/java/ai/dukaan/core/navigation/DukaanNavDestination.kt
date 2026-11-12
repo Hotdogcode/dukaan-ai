@@ -34,3 +34,30 @@ data object MainGraphRoute : DukaanRoute
 
 @Serializable
 data object DashboardRoute : DukaanRoute
+
+// Catalogue Navigation Graph Routes
+@Serializable
+data object ProductListRoute : DukaanRoute
+
+@Serializable
+data class ProductDetailsRoute(
+    val productId: String,
+) : DukaanRoute
+
+@Serializable
+data class AddProductRoute(
+    val prefilledBarcode: String? = null,
+) : DukaanRoute
+
+@Serializable
+data class EditProductRoute(
+    val productId: String,
+) : DukaanRoute
+
+@Serializable
+data object CategoryManagementRoute : DukaanRoute
+
+@Serializable
+data class BarcodeScannerRoute(
+    val source: String = "SEARCH",
+) : DukaanRoute

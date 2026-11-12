@@ -64,6 +64,12 @@ abstract class DataBindingsModule {
     abstract fun bindStoreRepository(
         storeRepositoryImpl: StoreRepositoryImpl,
     ): StoreRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCatalogueRepository(
+        catalogueRepositoryImpl: ai.dukaan.core.data.repository.CatalogueRepositoryImpl,
+    ): ai.dukaan.core.domain.repository.CatalogueRepository
 }
 
 @Module

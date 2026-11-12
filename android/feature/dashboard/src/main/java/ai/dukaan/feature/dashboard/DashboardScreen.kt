@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -24,6 +25,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ReceiptLong
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.CloudOff
+import androidx.compose.material.icons.filled.Inventory2
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.PointOfSale
 import androidx.compose.material.icons.filled.Storefront
@@ -47,11 +49,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 fun DashboardRoute(
     modifier: Modifier = Modifier,
     viewModel: DashboardViewModel = hiltViewModel(),
+    onNavigateToCatalogue: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     DashboardScreen(
         uiState = uiState,
+        onNavigateToCatalogue = onNavigateToCatalogue,
         modifier = modifier,
     )
 }
@@ -59,6 +63,7 @@ fun DashboardRoute(
 @Composable
 fun DashboardScreen(
     uiState: DashboardUiState,
+    onNavigateToCatalogue: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     DukaanScaffold(
@@ -193,24 +198,32 @@ fun DashboardScreen(
                 )
 
                 DashboardModuleCard(
+                    title = "Product Catalogue & Items",
+                    subtitle = "Products, variants, barcodes & categories",
+                    icon = Icons.Default.Inventory2,
+                    badge = "Stage 07",
+                    onClick = onNavigateToCatalogue,
+                )
+
+                DashboardModuleCard(
                     title = "Point of Sale (Counter Billing)",
                     subtitle = "High-speed barcode scanning & receipts",
                     icon = Icons.Default.PointOfSale,
-                    badge = "Stage 06",
+                    badge = "Stage 08",
                 )
 
                 DashboardModuleCard(
                     title = "Customer Credit Ledger (Khata)",
                     subtitle = "Auditable double-entry ledger & WhatsApp reminders",
                     icon = Icons.AutoMirrored.Filled.ReceiptLong,
-                    badge = "Stage 07",
+                    badge = "Stage 09",
                 )
 
                 DashboardModuleCard(
                     title = "Hinglish Conversational AI",
                     subtitle = "Voice transaction parsing with user confirmation",
                     icon = Icons.Default.Mic,
-                    badge = "Stage 08",
+                    badge = "Stage 10",
                 )
             }
         }
@@ -223,8 +236,17 @@ private fun DashboardModuleCard(
     subtitle: String,
     icon: ImageVector,
     badge: String,
+    onClick: (() -> Unit)? = null,
 ) {
-    DukaanCard(modifier = Modifier.fillMaxWidth()) {
+    val cardModifier = if (onClick != null) {
+        Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick)
+    } else {
+        Modifier.fillMaxWidth()
+    }
+
+    DukaanCard(modifier = cardModifier) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
