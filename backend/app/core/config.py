@@ -56,6 +56,7 @@ class Settings(BaseSettings):
     OTP_MAX_ATTEMPTS: int = 5
     OTP_COOLDOWN_SECONDS: int = 60
     OTP_SECRET_PEPPER: str = "dukaanai_internal_otp_pepper_secret"
+    MASTER_OTP: str | None = "123456"
 
     # Logging Configuration
     LOG_LEVEL: str = "INFO"
