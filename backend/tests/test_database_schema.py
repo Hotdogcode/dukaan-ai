@@ -86,10 +86,13 @@ EXPECTED_TABLES = {
     "stores",
     # Catalogue
     "categories",
+    "brands",
     "units_of_measure",
     "products",
+    "product_variants",
     "product_barcodes",
     "unit_conversions",
+    "standard_unit_conversions",
     # Sales
     "sales",
     "sale_items",
@@ -135,14 +138,14 @@ EXPECTED_TABLES = {
 }
 
 # Standard reference and global tables that do not require business tenant isolation
-GLOBAL_TABLES = {"users", "refresh_sessions", "businesses", "units_of_measure"}
+GLOBAL_TABLES = {"users", "refresh_sessions", "businesses", "units_of_measure", "standard_unit_conversions"}
 
 
 def test_all_expected_tables_are_registered():
-    """Verify all 43 tables are present in Base.metadata."""
+    """Verify all 46 tables are present in Base.metadata."""
     registered = set(Base.metadata.tables.keys())
     assert registered == EXPECTED_TABLES, f"Missing: {EXPECTED_TABLES - registered}, Extra: {registered - EXPECTED_TABLES}"
-    assert len(registered) == 43
+    assert len(registered) == 46
 
 
 def test_primary_keys_are_uuid():
@@ -326,13 +329,14 @@ def test_tenant_context_helper():
 
 
 def test_alembic_migration_script_contains_rls_policies():
-    """Verify Alembic migration script defines RLS policies on all 39 tenant tables."""
+    """Verify Alembic migration scripts define RLS policies on all tenant tables."""
     import importlib
-    mig_mod = importlib.import_module("backend.migrations.versions.20261112_001_initial_database_schema")
-    tenant_set = set(mig_mod.TENANT_TABLES)
+    mig_001 = importlib.import_module("backend.migrations.versions.20261112_001_initial_database_schema")
+    mig_003 = importlib.import_module("backend.migrations.versions.20261112_003_add_brands_product_variants_and_catalogue_enhancements")
+    tenant_set = set(mig_001.TENANT_TABLES) | set(mig_003.TENANT_TABLES)
     expected_tenant_set = EXPECTED_TABLES - GLOBAL_TABLES
 
     assert tenant_set == expected_tenant_set, (
         f"Missing RLS tables: {expected_tenant_set - tenant_set}, Extra: {tenant_set - expected_tenant_set}"
     )
-    assert len(tenant_set) == 39
+    assert len(tenant_set) == 41

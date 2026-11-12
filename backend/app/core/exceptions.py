@@ -112,3 +112,13 @@ class ResourceConflict(DukaanAIException):
 class RateLimitExceeded(DukaanAIException):
     def __init__(self, message: str = "Rate limit exceeded. Please try again later."):
         super().__init__(message=message, code="RATE_LIMIT_EXCEEDED", status_code=429)
+
+
+class BusinessRuleViolation(DukaanAIException):
+    def __init__(self, message: str = "Business rule violation."):
+        super().__init__(message=message, code="BUSINESS_RULE_VIOLATION", status_code=422)
+
+
+class EntityNotFound(DukaanAIException):
+    def __init__(self, message: str = "Requested entity not found."):
+        super().__init__(message=message, code="ENTITY_NOT_FOUND", status_code=404)

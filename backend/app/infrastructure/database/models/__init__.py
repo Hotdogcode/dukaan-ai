@@ -6,9 +6,12 @@ from backend.app.infrastructure.database.models.business import Business, Busine
 
 # Product Catalogue
 from backend.app.infrastructure.database.models.catalogue import (
+    Brand,
     Category,
     UnitOfMeasure,
+    StandardUnitConversion,
     Product,
+    ProductVariant,
     ProductBarcode,
     UnitConversion,
 )
@@ -97,9 +100,12 @@ __all__ = [
     "BusinessUser",
     "Store",
     # Catalogue
+    "Brand",
     "Category",
     "UnitOfMeasure",
+    "StandardUnitConversion",
     "Product",
+    "ProductVariant",
     "ProductBarcode",
     "UnitConversion",
     # Sales

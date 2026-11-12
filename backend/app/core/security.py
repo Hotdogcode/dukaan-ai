@@ -23,6 +23,11 @@ class Permissions:
     MEMBERS_MANAGE = "members.manage"
     PRODUCTS_READ = "products.read"
     PRODUCTS_WRITE = "products.write"
+    PRODUCTS_CREATE = "products.create"
+    PRODUCTS_UPDATE = "products.update"
+    PRODUCTS_DEACTIVATE = "products.deactivate"
+    CATEGORIES_MANAGE = "categories.manage"
+    BRANDS_MANAGE = "brands.manage"
     SALES_READ = "sales.read"
     SALES_CREATE = "sales.create"
     INVENTORY_READ = "inventory.read"
@@ -38,6 +43,11 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.MEMBERS_MANAGE,
         Permissions.PRODUCTS_READ,
         Permissions.PRODUCTS_WRITE,
+        Permissions.PRODUCTS_CREATE,
+        Permissions.PRODUCTS_UPDATE,
+        Permissions.PRODUCTS_DEACTIVATE,
+        Permissions.CATEGORIES_MANAGE,
+        Permissions.BRANDS_MANAGE,
         Permissions.SALES_READ,
         Permissions.SALES_CREATE,
         Permissions.INVENTORY_READ,
@@ -51,6 +61,11 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.MEMBERS_MANAGE,
         Permissions.PRODUCTS_READ,
         Permissions.PRODUCTS_WRITE,
+        Permissions.PRODUCTS_CREATE,
+        Permissions.PRODUCTS_UPDATE,
+        Permissions.PRODUCTS_DEACTIVATE,
+        Permissions.CATEGORIES_MANAGE,
+        Permissions.BRANDS_MANAGE,
         Permissions.SALES_READ,
         Permissions.SALES_CREATE,
         Permissions.INVENTORY_READ,
@@ -69,6 +84,10 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.BUSINESS_READ,
         Permissions.PRODUCTS_READ,
         Permissions.PRODUCTS_WRITE,
+        Permissions.PRODUCTS_CREATE,
+        Permissions.PRODUCTS_UPDATE,
+        Permissions.CATEGORIES_MANAGE,
+        Permissions.BRANDS_MANAGE,
         Permissions.INVENTORY_READ,
         Permissions.INVENTORY_ADJUST,
     },

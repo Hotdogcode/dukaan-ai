@@ -17,6 +17,19 @@ from backend.app.infrastructure.otp.dev_provider import DevOTPProvider
 from backend.app.infrastructure.otp.service import OTPService, normalize_phone_number
 
 
+@pytest.fixture(autouse=True)
+def clean_otp_service(monkeypatch):
+    """Ensure clean OTP state and isolate core verification logic from MASTER_OTP bypass."""
+    monkeypatch.setattr(settings, "MASTER_OTP", None)
+    OTPService._storage.clear()
+    OTPService._request_to_phone.clear()
+    OTPService._provider_instance = None
+    yield
+    OTPService._storage.clear()
+    OTPService._request_to_phone.clear()
+    OTPService._provider_instance = None
+
+
 def test_phone_number_normalization():
     """Verify E.164 normalization for Indian retail mobile numbers."""
     assert normalize_phone_number("9876543210") == "+919876543210"
