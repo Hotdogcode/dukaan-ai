@@ -61,3 +61,28 @@ data object CategoryManagementRoute : DukaanRoute
 data class BarcodeScannerRoute(
     val source: String = "SEARCH",
 ) : DukaanRoute
+
+// Inventory Navigation Routes
+@Serializable
+data object InventoryDashboardRoute : DukaanRoute
+
+@Serializable
+data object InventoryListRoute : DukaanRoute
+
+@Serializable
+data class StockDetailsRoute(
+    val variantId: String,
+) : DukaanRoute
+
+@Serializable
+data class OpeningStockRoute(
+    val variantId: String? = null,
+) : DukaanRoute
+
+@Serializable
+data class StockAdjustmentRoute(
+    val variantId: String? = null,
+) : DukaanRoute
+
+@Serializable
+data object StockCountRoute : DukaanRoute

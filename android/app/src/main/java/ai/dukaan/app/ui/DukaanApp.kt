@@ -6,11 +6,17 @@ import ai.dukaan.core.navigation.BusinessOnboardingRoute
 import ai.dukaan.core.navigation.CategoryManagementRoute
 import ai.dukaan.core.navigation.DashboardRoute
 import ai.dukaan.core.navigation.EditProductRoute
+import ai.dukaan.core.navigation.InventoryDashboardRoute
+import ai.dukaan.core.navigation.InventoryListRoute
 import ai.dukaan.core.navigation.LoginRoute
+import ai.dukaan.core.navigation.OpeningStockRoute
 import ai.dukaan.core.navigation.OtpVerifyRoute
 import ai.dukaan.core.navigation.ProductDetailsRoute
 import ai.dukaan.core.navigation.ProductListRoute
 import ai.dukaan.core.navigation.SplashRoute
+import ai.dukaan.core.navigation.StockAdjustmentRoute
+import ai.dukaan.core.navigation.StockCountRoute
+import ai.dukaan.core.navigation.StockDetailsRoute
 import ai.dukaan.feature.auth.login.LoginRoute
 import ai.dukaan.feature.auth.otp.OtpVerifyRoute
 import ai.dukaan.feature.auth.splash.SplashRoute
@@ -20,6 +26,12 @@ import ai.dukaan.feature.catalogue.CategoryManagementScreen
 import ai.dukaan.feature.catalogue.ProductDetailsScreen
 import ai.dukaan.feature.catalogue.ProductListScreen
 import ai.dukaan.feature.dashboard.DashboardRoute
+import ai.dukaan.feature.inventory.InventoryDashboardScreen
+import ai.dukaan.feature.inventory.InventoryListScreen
+import ai.dukaan.feature.inventory.OpeningStockScreen
+import ai.dukaan.feature.inventory.StockAdjustmentScreen
+import ai.dukaan.feature.inventory.StockCountScreen
+import ai.dukaan.feature.inventory.StockDetailsScreen
 import ai.dukaan.feature.onboarding.BusinessOnboardingRoute
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -98,6 +110,9 @@ fun DukaanApp() {
                 onNavigateToCatalogue = {
                     navController.navigate(ProductListRoute)
                 },
+                onNavigateToInventory = {
+                    navController.navigate(InventoryDashboardRoute)
+                },
             )
         }
 
@@ -175,6 +190,81 @@ fun DukaanApp() {
                         navController.navigate(AddProductRoute(prefilledBarcode = scannedCode))
                     }
                 },
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+            )
+        }
+
+        // -----------------------------------------------------------------
+        // Inventory & Stock Ledger Navigation Routes (Stage 08)
+        // -----------------------------------------------------------------
+        composable<InventoryDashboardRoute> {
+            InventoryDashboardScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToList = {
+                    navController.navigate(InventoryListRoute)
+                },
+                onNavigateToOpeningStock = {
+                    navController.navigate(OpeningStockRoute())
+                },
+                onNavigateToAdjustment = {
+                    navController.navigate(StockAdjustmentRoute())
+                },
+                onNavigateToStockCount = {
+                    navController.navigate(StockCountRoute)
+                },
+            )
+        }
+
+        composable<InventoryListRoute> {
+            InventoryListScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToDetails = { variantId ->
+                    navController.navigate(StockDetailsRoute(variantId = variantId.toString()))
+                },
+                onNavigateToAdjustment = {
+                    navController.navigate(StockAdjustmentRoute())
+                },
+            )
+        }
+
+        composable<StockDetailsRoute> {
+            StockDetailsScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNavigateToAdjustment = { variantId ->
+                    navController.navigate(StockAdjustmentRoute(variantId = variantId))
+                },
+                onNavigateToOpeningStock = { variantId ->
+                    navController.navigate(OpeningStockRoute(variantId = variantId))
+                },
+            )
+        }
+
+        composable<OpeningStockRoute> {
+            OpeningStockScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+            )
+        }
+
+        composable<StockAdjustmentRoute> {
+            StockAdjustmentScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+            )
+        }
+
+        composable<StockCountRoute> {
+            StockCountScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 },

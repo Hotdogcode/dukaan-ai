@@ -113,4 +113,9 @@ object NetworkModule {
     @Singleton
     fun providesCatalogueApiService(retrofit: Retrofit): ai.dukaan.core.network.api.CatalogueApiService =
         retrofit.create(ai.dukaan.core.network.api.CatalogueApiService::class.java)
+
+    @Provides
+    @Singleton
+    fun providesInventoryApiService(retrofit: Retrofit): ai.dukaan.core.network.api.InventoryApiService =
+        retrofit.create(ai.dukaan.core.network.api.InventoryApiService::class.java)
 }

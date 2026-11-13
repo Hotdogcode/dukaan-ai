@@ -25,6 +25,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ReceiptLong
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.CloudOff
+import androidx.compose.material.icons.filled.Inventory
 import androidx.compose.material.icons.filled.Inventory2
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.PointOfSale
@@ -50,12 +51,14 @@ fun DashboardRoute(
     modifier: Modifier = Modifier,
     viewModel: DashboardViewModel = hiltViewModel(),
     onNavigateToCatalogue: () -> Unit = {},
+    onNavigateToInventory: () -> Unit = {},
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     DashboardScreen(
         uiState = uiState,
         onNavigateToCatalogue = onNavigateToCatalogue,
+        onNavigateToInventory = onNavigateToInventory,
         modifier = modifier,
     )
 }
@@ -64,6 +67,7 @@ fun DashboardRoute(
 fun DashboardScreen(
     uiState: DashboardUiState,
     onNavigateToCatalogue: () -> Unit = {},
+    onNavigateToInventory: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     DukaanScaffold(
@@ -206,24 +210,32 @@ fun DashboardScreen(
                 )
 
                 DashboardModuleCard(
+                    title = "Inventory & Stock Ledger",
+                    subtitle = "Stock balances, WAC valuation, adjustments & audit counts",
+                    icon = Icons.Default.Inventory,
+                    badge = "Stage 08",
+                    onClick = onNavigateToInventory,
+                )
+
+                DashboardModuleCard(
                     title = "Point of Sale (Counter Billing)",
                     subtitle = "High-speed barcode scanning & receipts",
                     icon = Icons.Default.PointOfSale,
-                    badge = "Stage 08",
+                    badge = "Stage 09",
                 )
 
                 DashboardModuleCard(
                     title = "Customer Credit Ledger (Khata)",
                     subtitle = "Auditable double-entry ledger & WhatsApp reminders",
                     icon = Icons.AutoMirrored.Filled.ReceiptLong,
-                    badge = "Stage 09",
+                    badge = "Stage 10",
                 )
 
                 DashboardModuleCard(
                     title = "Hinglish Conversational AI",
                     subtitle = "Voice transaction parsing with user confirmation",
                     icon = Icons.Default.Mic,
-                    badge = "Stage 10",
+                    badge = "Stage 11",
                 )
             }
         }

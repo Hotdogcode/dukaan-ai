@@ -7,15 +7,24 @@ import ai.dukaan.core.database.dao.AppMetadataDao
 import ai.dukaan.core.database.dao.BrandDao
 import ai.dukaan.core.database.dao.CatalogueOutboxDao
 import ai.dukaan.core.database.dao.CategoryDao
+import ai.dukaan.core.database.dao.InventoryCountDao
+import ai.dukaan.core.database.dao.InventoryOutboxDao
 import ai.dukaan.core.database.dao.ProductDao
+import ai.dukaan.core.database.dao.StockBalanceDao
+import ai.dukaan.core.database.dao.StockMovementDao
 import ai.dukaan.core.database.dao.UnitOfMeasureDao
 import ai.dukaan.core.database.entity.AppMetadataEntity
 import ai.dukaan.core.database.entity.BrandEntity
 import ai.dukaan.core.database.entity.CatalogueOutboxEntity
 import ai.dukaan.core.database.entity.CategoryEntity
+import ai.dukaan.core.database.entity.InventoryCountItemEntity
+import ai.dukaan.core.database.entity.InventoryCountSessionEntity
+import ai.dukaan.core.database.entity.InventoryOutboxEntity
 import ai.dukaan.core.database.entity.ProductBarcodeEntity
 import ai.dukaan.core.database.entity.ProductEntity
 import ai.dukaan.core.database.entity.ProductVariantEntity
+import ai.dukaan.core.database.entity.StockBalanceEntity
+import ai.dukaan.core.database.entity.StockMovementEntity
 import ai.dukaan.core.database.entity.UnitOfMeasureEntity
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -31,8 +40,13 @@ import androidx.room.TypeConverters
         ProductVariantEntity::class,
         ProductBarcodeEntity::class,
         CatalogueOutboxEntity::class,
+        StockBalanceEntity::class,
+        StockMovementEntity::class,
+        InventoryCountSessionEntity::class,
+        InventoryCountItemEntity::class,
+        InventoryOutboxEntity::class,
     ],
-    version = 2,
+    version = 3,
     exportSchema = false,
 )
 @TypeConverters(
@@ -47,6 +61,10 @@ abstract class DukaanDatabase : RoomDatabase() {
     abstract fun brandDao(): BrandDao
     abstract fun unitOfMeasureDao(): UnitOfMeasureDao
     abstract fun catalogueOutboxDao(): CatalogueOutboxDao
+    abstract fun stockBalanceDao(): StockBalanceDao
+    abstract fun stockMovementDao(): StockMovementDao
+    abstract fun inventoryCountDao(): InventoryCountDao
+    abstract fun inventoryOutboxDao(): InventoryOutboxDao
 
     companion object {
         const val DATABASE_NAME = "dukaanai.db"

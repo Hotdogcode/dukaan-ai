@@ -5,7 +5,11 @@ import ai.dukaan.core.database.dao.AppMetadataDao
 import ai.dukaan.core.database.dao.BrandDao
 import ai.dukaan.core.database.dao.CatalogueOutboxDao
 import ai.dukaan.core.database.dao.CategoryDao
+import ai.dukaan.core.database.dao.InventoryCountDao
+import ai.dukaan.core.database.dao.InventoryOutboxDao
 import ai.dukaan.core.database.dao.ProductDao
+import ai.dukaan.core.database.dao.StockBalanceDao
+import ai.dukaan.core.database.dao.StockMovementDao
 import ai.dukaan.core.database.dao.UnitOfMeasureDao
 import android.content.Context
 import androidx.room.Room
@@ -67,4 +71,28 @@ object DatabaseModule {
     fun providesCatalogueOutboxDao(
         database: DukaanDatabase,
     ): CatalogueOutboxDao = database.catalogueOutboxDao()
+
+    @Provides
+    @Singleton
+    fun providesStockBalanceDao(
+        database: DukaanDatabase,
+    ): StockBalanceDao = database.stockBalanceDao()
+
+    @Provides
+    @Singleton
+    fun providesStockMovementDao(
+        database: DukaanDatabase,
+    ): StockMovementDao = database.stockMovementDao()
+
+    @Provides
+    @Singleton
+    fun providesInventoryCountDao(
+        database: DukaanDatabase,
+    ): InventoryCountDao = database.inventoryCountDao()
+
+    @Provides
+    @Singleton
+    fun providesInventoryOutboxDao(
+        database: DukaanDatabase,
+    ): InventoryOutboxDao = database.inventoryOutboxDao()
 }

@@ -83,6 +83,7 @@ dependencies {
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:dashboard"))
     implementation(project(":feature:catalogue"))
+    implementation(project(":feature:inventory"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
