@@ -32,6 +32,9 @@ class Permissions:
     SALES_CREATE = "sales.create"
     INVENTORY_READ = "inventory.read"
     INVENTORY_ADJUST = "inventory.adjust"
+    INVENTORY_OPENING_STOCK = "inventory.opening_stock"
+    INVENTORY_COUNT = "inventory.count"
+    INVENTORY_RECONCILE = "inventory.reconcile"
     FINANCE_READ = "finance.read"
     REPORTS_READ = "reports.read"
 
@@ -52,6 +55,9 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.SALES_CREATE,
         Permissions.INVENTORY_READ,
         Permissions.INVENTORY_ADJUST,
+        Permissions.INVENTORY_OPENING_STOCK,
+        Permissions.INVENTORY_COUNT,
+        Permissions.INVENTORY_RECONCILE,
         Permissions.FINANCE_READ,
         Permissions.REPORTS_READ,
     },
@@ -70,6 +76,9 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.SALES_CREATE,
         Permissions.INVENTORY_READ,
         Permissions.INVENTORY_ADJUST,
+        Permissions.INVENTORY_OPENING_STOCK,
+        Permissions.INVENTORY_COUNT,
+        Permissions.INVENTORY_RECONCILE,
         Permissions.FINANCE_READ,
         Permissions.REPORTS_READ,
     },
@@ -79,6 +88,7 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.SALES_READ,
         Permissions.SALES_CREATE,
         Permissions.FINANCE_READ,
+        Permissions.INVENTORY_READ,
     },
     "INVENTORY_STAFF": {
         Permissions.BUSINESS_READ,
@@ -90,6 +100,7 @@ ROLE_PERMISSIONS: dict[str, set[str]] = {
         Permissions.BRANDS_MANAGE,
         Permissions.INVENTORY_READ,
         Permissions.INVENTORY_ADJUST,
+        Permissions.INVENTORY_COUNT,
     },
 }
 

@@ -17,6 +17,7 @@ class Business(Base, UUIDPrimaryKeyMixin, TimestampMixin):
     timezone: Mapped[str] = mapped_column(String(50), default="Asia/Kolkata", nullable=False)
     primary_language: Mapped[str] = mapped_column(String(10), default="hi", nullable=False)
     settings: Mapped[dict] = mapped_column(JSONB, default=dict, nullable=False)
+    negative_stock_policy: Mapped[str] = mapped_column(String(30), default="DISALLOW_NEGATIVE_STOCK", nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
     @property

@@ -53,6 +53,7 @@ from backend.app.infrastructure.database.models import (
     StockMovement,
     StockBalance,
     InventoryCountSession,
+    InventoryCountItem,
     InventoryAdjustment,
     Customer,
     CustomerLedgerEntry,
@@ -109,6 +110,7 @@ EXPECTED_TABLES = {
     "stock_movements",
     "stock_balances",
     "inventory_count_sessions",
+    "inventory_count_items",
     "inventory_adjustments",
     # Customer Ledger (Khata)
     "customers",
@@ -142,10 +144,10 @@ GLOBAL_TABLES = {"users", "refresh_sessions", "businesses", "units_of_measure", 
 
 
 def test_all_expected_tables_are_registered():
-    """Verify all 46 tables are present in Base.metadata."""
+    """Verify all 47 tables are present in Base.metadata."""
     registered = set(Base.metadata.tables.keys())
     assert registered == EXPECTED_TABLES, f"Missing: {EXPECTED_TABLES - registered}, Extra: {registered - EXPECTED_TABLES}"
-    assert len(registered) == 46
+    assert len(registered) == 47
 
 
 def test_primary_keys_are_uuid():
@@ -293,13 +295,13 @@ def test_unique_constraints_and_idempotency_keys():
     cust_cols_sets = [{col.name for col in u.columns} for u in cust_uniques]
     assert {"business_id", "phone_number"} in cust_cols_sets
 
-    # StockBalance store + product per business
+    # StockBalance store + variant per business
     stock_balances = Base.metadata.tables["stock_balances"]
     sb_uniques = [
         c for c in stock_balances.constraints if isinstance(c, UniqueConstraint)
     ] + [idx for idx in stock_balances.indexes if idx.unique]
     sb_cols_sets = [{col.name for col in u.columns} for u in sb_uniques]
-    assert {"business_id", "store_id", "product_id"} in sb_cols_sets
+    assert {"business_id", "store_id", "variant_id"} in sb_cols_sets
 
 
 def test_optimistic_locking_version_column():
@@ -333,10 +335,11 @@ def test_alembic_migration_script_contains_rls_policies():
     import importlib
     mig_001 = importlib.import_module("backend.migrations.versions.20261112_001_initial_database_schema")
     mig_003 = importlib.import_module("backend.migrations.versions.20261112_003_add_brands_product_variants_and_catalogue_enhancements")
-    tenant_set = set(mig_001.TENANT_TABLES) | set(mig_003.TENANT_TABLES)
+    mig_004 = importlib.import_module("backend.migrations.versions.20261113_004_enhance_inventory_variant_level_and_stock_ledger")
+    tenant_set = set(mig_001.TENANT_TABLES) | set(mig_003.TENANT_TABLES) | set(mig_004.TENANT_TABLES)
     expected_tenant_set = EXPECTED_TABLES - GLOBAL_TABLES
 
     assert tenant_set == expected_tenant_set, (
         f"Missing RLS tables: {expected_tenant_set - tenant_set}, Extra: {tenant_set - expected_tenant_set}"
     )
-    assert len(tenant_set) == 41
+    assert len(tenant_set) == 42

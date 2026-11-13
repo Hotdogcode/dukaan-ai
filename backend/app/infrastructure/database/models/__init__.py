@@ -39,6 +39,7 @@ from backend.app.infrastructure.database.models.inventory import (
     StockMovement,
     StockBalance,
     InventoryCountSession,
+    InventoryCountItem,
     InventoryAdjustment,
 )
 
@@ -124,6 +125,7 @@ __all__ = [
     "StockMovement",
     "StockBalance",
     "InventoryCountSession",
+    "InventoryCountItem",
     "InventoryAdjustment",
     # Customers
     "Customer",
